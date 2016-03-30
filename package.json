@@ -1,0 +1,29 @@
+{
+  "name": "sca-service-freesurfer",
+  "version": "1.0.0",
+  "description": "run freesurfer neuro application",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soichih/sca-service-freesurfer.git"
+  },
+  "author": "Soichi Hayashi <hayashis@iu.edu>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soichih/sca-service-freesurfer/issues"
+  },
+  "homepage": "https://github.com/soichih/sca-service-freesurfer#readme",
+  "sca": {
+    "label": "Freesurfer",
+    "bin": {
+        "start": "submit.sh",
+        "status": "status.sh"
+    }
+  }
+}
