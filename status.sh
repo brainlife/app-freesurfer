@@ -27,15 +27,11 @@ if [ -f jobid ]; then
         exit 0 #running!
     fi
     if [ $jobstate == "R" ]; then
-        echo "Running"
 
         #get rough estimate of the progress by analyzing the size of input and output directory
         taskdir_size=`du -s . | cut -f1`
-        #per=$((taskdir_size * 100 / input_size))
         per=`bc -l <<< $taskdir_size/$input_size`
-        #if [ $per -gt "100" ]; then
-        #    per=100
-        #fi
+        echo "Running $per%"
         curl -s -X POST -H "Content-Type: application/json" -d "{\"status\": \"running\", \"progress\":$per, \"msg\":\"Executing recon_all\"}" $SCA_PROGRESS_URL > /dev/null
 
         exit 0 #running!
