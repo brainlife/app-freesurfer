@@ -14,6 +14,9 @@ if [ -f finished ]; then
     fi
 fi
 
+#used to analyze the progress
+input_size=`du -s ../upload | cut -f1`
+
 if [ -f jobid ]; then
     jobid=`cat jobid`
     jobstate=`qstat -f $jobid | grep job_state | cut -b17`
@@ -25,6 +28,15 @@ if [ -f jobid ]; then
     fi
     if [ $jobstate == "R" ]; then
         echo "Running"
+
+        #get rough estimate of the progress by analyzing the size of input and output directory
+        taskdir_size=`du -s . | cut -f1`
+        per=$((taskdir_size * 100 / input_size))
+        if [ $per -gt "100" ]; then
+            per=100
+        fi
+        curl -s -X POST -H "Content-Type: application/json" -d "{\"status\": \"running\", \"progress\":$per, \"msg\":\"Executing recon_all\"}" $SCA_PROGRESS_URL > /dev/null
+
         exit 0 #running!
     fi
 
