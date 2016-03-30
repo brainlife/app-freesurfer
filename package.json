@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soichih/sca-service-freesurfer.git"
+    "url": "https://github.com/soichih/sca-service-freesurfer.git"
   },
   "author": "Soichi Hayashi <hayashis@iu.edu>",
   "license": "ISC",
@@ -22,7 +22,7 @@
   "sca": {
     "label": "Freesurfer",
     "bin": {
-        "start": "submit.sh",
+        "start": "start.sh",
         "status": "status.sh"
     }
   }
