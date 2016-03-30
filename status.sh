@@ -31,8 +31,8 @@ if [ -f jobid ]; then
         #get rough estimate of the progress by analyzing the size of input and output directory
         taskdir_size=`du -s . | cut -f1`
         per=`bc -l <<< $taskdir_size/$input_size`
-        per=`printf %.2f $per` #round it
-        echo "Running $per%"
+        per=`printf %.4f $per` #round it
+        echo "Running $per"
         curl -s -X POST -H "Content-Type: application/json" -d "{\"status\": \"running\", \"progress\":$per, \"msg\":\"Executing recon_all\"}" $SCA_PROGRESS_URL > /dev/null
 
         exit 0 #running!
