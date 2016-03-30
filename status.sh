@@ -18,7 +18,7 @@ if [ -f jobid ]; then
     jobid=`cat jobid`
     jobstate=`qstat -f $jobid | grep job_state | cut -b17`
     if [ $jobstate == "Q" ]; then
-        echo "Waiting in the queue"
+        echo "Job:$jobid Waiting in the queue"
         eststart=`showstart $jobid | grep start`
         curl -s -X POST -H "Content-Type: application/json" -d "{\"msg\":\"Waiting in the PBS queue : $eststart\"}" $SCA_PROGRESS_URL > /dev/null
         exit 0 #running!
@@ -29,7 +29,7 @@ if [ -f jobid ]; then
     fi
 
     #assume failed for all other state
-    echo "Jobs failed - PBS job state: $jobstate"
+    echo "Job:$jobid failed - PBS job state: $jobstate"
     exit 2
 fi
 

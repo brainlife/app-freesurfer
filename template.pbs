@@ -7,7 +7,7 @@
 
 module load freesurfer/5.3.0
 source /N/soft/cle4/freesurfer/5.3.0/FreeSurferEnv.sh
-export SUBJECTS_DIR=$SCA_TASK_DIR
+export SUBJECTS_DIR=__taskdir__
 
 __reconall__
 

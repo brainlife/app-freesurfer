@@ -20,6 +20,9 @@ var reconall = "";
 config.files.forEach(function(file) {
     reconall += genrecon(file);
 });
-var script = template.replace("__reconall__", reconall);
 
-console.log(script);
+//do substitutions
+template = template.replace("__taskdir__", process.env.SCA_TASK_DIR);
+template = template.replace("__reconall__", reconall);
+
+console.log(template);
