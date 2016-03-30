@@ -6,7 +6,8 @@ var config = JSON.parse(fs.readFileSync('config.json', "utf8"));
 
 function genrecon(file) {
     var subject = file.filename.substring(0, file.filename.length-4);
-    var line = "recon-all -i \"../"+config.input_task_id+"/"+file.filename+"\" -subject \""+subject+"\"";
+    var workdir = process.env.SCA_WORKFLOW_DIR;
+    var line = "recon-all -i \""+workdir+"/"+config.input_task_id+"/"+file.filename+"\" -subject \""+subject+"\"";
     if(config.a) line+=" -all";
     if(config.hipposubfields) line+=" -hippo-subfields";
     line += " &\n";
