@@ -19,6 +19,6 @@ var reconall = "";
 config.files.forEach(function(file) {
     reconall += genrecon(file);
 });
-template.replace("__reconall__", reconall);
+var script = template.replace("__reconall__", reconall);
 
-console.log(template);
+console.log(script);
