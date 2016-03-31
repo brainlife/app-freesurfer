@@ -5,13 +5,17 @@
 #PBS -m abe
 #PBS -j oe
 
+cd __taskdir__
+
 module load freesurfer/5.3.0
 source /N/soft/cle4/freesurfer/5.3.0/FreeSurferEnv.sh
 export SUBJECTS_DIR=__taskdir__
 
 __reconall__
 
-#TODO
-#wait normally returns the exit status of the last job which terminated... I need to check for all process output
+#TODO - wait normally returns the exit status of the last job which terminated... I need to check for all process output
 wait
-echo $? > finished
+
+__zip__
+
+echo 0 > finished
