@@ -7,9 +7,11 @@ if [ -f finished ]; then
     code=`cat finished`
     if [ $code -eq 0 ]; then
         echo "finished successfully"
+        curl -s -X POST -H "Content-Type: application/json" -d "{\"status\": \"finished\", \"progress\":1, \"msg\":\"Finished Successfully\"}" $SCA_PROGRESS_URL > /dev/null
         exit 1 #success!
     else
         echo "finished with code:$code"
+        curl -s -X POST -H "Content-Type: application/json" -d "{\"status\": \"failed\", \"msg\":\"Job Failed\"}" $SCA_PROGRESS_URL > /dev/null
         exit 2 #failed
     fi
 fi
