@@ -7,6 +7,8 @@ var config = JSON.parse(fs.readFileSync('config.json', "utf8"));
 var template = fs.readFileSync(__dirname+"/template.pbs", "utf8");
 
 function genrecon(file) {
+    var process = config.process; //TODO - deal with this.. (recon, etc..)
+
     var subject = file.filename.substring(0, file.filename.length-4);
     var workdir = process.env.SCA_WORKFLOW_DIR;
     var line = "recon-all -i \""+workdir+"/"+config.input_task_id+"/"+file.filename+"\" -subject \""+subject+"\"";

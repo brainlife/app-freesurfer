@@ -23,6 +23,7 @@
     "label": "Freesurfer",
     "bin": {
         "start": "start.sh",
+        "stop": "stop.sh",
         "status": "status.sh"
     }
   }
