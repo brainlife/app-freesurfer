@@ -17,7 +17,8 @@ if [ -f finished ]; then
 fi
 
 #used to analyze the progress
-input_size=`du -s ../upload | cut -f1`
+#TODO instead of using _input, use config/input_task_id
+input_size=`du -s ../_input | cut -f1`
 
 if [ -f jobid ]; then
     jobid=`cat jobid`
