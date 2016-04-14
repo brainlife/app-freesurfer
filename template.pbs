@@ -16,9 +16,10 @@ __reconall__
 #TODO - wait normally returns the exit status of the last job which terminated... I need to check for all process output
 wait
 
-__zip__
+#change this to __zip__ if I want to zip output directories
+__zip_dis__
 
 #fake products.json for now..
-echo "{}" > products.json
+echo "__products__" > products.json
 
 echo 0 > finished
