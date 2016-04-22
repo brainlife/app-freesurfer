@@ -10,8 +10,12 @@ var products = [];
 function genrecon(file, subject) {
     var proc = config.process; //TODO - deal with this.. (recon, etc..)
 
+    var line = "";
+    //recon-all fails if there is previous output dir (according to Jonn?)
+    line += "rm -r "+subject+"\n";
+
     var workdir = process.env.SCA_WORKFLOW_DIR;
-    var line = "recon-all -all -i \""+workdir+"/"+config.input_task_id+"/"+file.filename+"\" -subject \""+subject+"\"";
+    line += "recon-all -all -i \""+workdir+"/"+config.input_task_id+"/"+file.filename+"\" -subject \""+subject+"\"";
     if(config.hipposubfields) line+=" -hippo-subfields";
     line += " &\n";
     return line;
