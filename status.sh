@@ -3,6 +3,14 @@
 #return code 1 = finished successfully
 #return code 2 = failed
 
+#make sure jq is installed on $SCA_SERVICE_DIR
+if [ ! -f $SCA_SERVICE_DIR/jq ];
+then
+        echo "installing jq"
+        wget https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -O $SCA_SERVICE_DIR/jq
+        chmod +x $SCA_SERVICE_DIR/jq
+fi
+
 if [ -f finished ]; then
     code=`cat finished`
     if [ $code -eq 0 ]; then
@@ -18,7 +26,8 @@ fi
 
 #used to analyze the progress
 #TODO instead of using _upload, use config/input_task_id
-input_size=`du -s ../_upload | cut -f1`
+input_task_id=`$SCA_SERVICE_DIR/jq -r '.input_task_id' config.json`
+input_size=`du -sL ../$input_task_id | cut -f1`
 
 if [ -f jobid ]; then
     jobid=`cat jobid`
