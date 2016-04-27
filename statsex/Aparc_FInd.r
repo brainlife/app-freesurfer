@@ -15,7 +15,6 @@ colnames<-t(colnames)
 write.table(colnames,"Results/Aparc_FoldInd.csv",append=TRUE,quote=FALSE,sep=",",row.names=FALSE,col.names=FALSE)
 
 ### Reading in the template for matching and filling up the missing values in the data 
-temp_dir <- "/home/pkgandhi/Templates_53"
 setwd(temp_dir)
 local_files <- list.files(temp_dir)
 base_file <- local_files[grepl("lh.aparc.stats$",local_files)]

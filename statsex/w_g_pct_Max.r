@@ -15,7 +15,6 @@ colnames<-t(colnames)
 write.table(colnames,"Results/W_G_PCT_Max.csv",append=TRUE,quote=FALSE,sep=",",row.names=FALSE,col.names=FALSE)
 
 ### Reading in the template for matching and filling up the missing values in the data 
-temp_dir <- "/home/pkgandhi/Freesurfer_data_extraction/Templates_53" 
 setwd(temp_dir)
 local_files <- list.files(temp_dir)
 base_file <- local_files[grepl("rh.w-g.pct.stats$",local_files)]
