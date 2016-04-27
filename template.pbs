@@ -19,6 +19,9 @@ __reconall__
 #TODO - wait normally returns the exit status of the last job which terminated... I need to check for all process output
 wait
 
+#run stats analysis code here..
+#TODO
+
 #remove _dis if I want to zip output directories
 #__zip_dis__
 
