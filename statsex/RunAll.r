@@ -1,7 +1,7 @@
 
 #TODO - pull this from command line
-basedir <- "/usr/local/tmp/DICOM_QC_FreeSurfer/10142_3_RES"
-temp_dir <- "/home/hayashis/git/sca-service-freesurfer/statsex_template"
+basedir <- "/home/pkgandhi/test_data"
+temp_dir <- "/home/pkgandhi/Freesurfer_data_extraction"
 
 source("statsex/Aparc_CInd.r")
 source("statsex/Aparc_FInd.r")
