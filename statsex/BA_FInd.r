@@ -4,10 +4,6 @@
                           ## Pratik Gandhi ## 
 
 ### Define the base directory
-i<-0
-setwd(basedir)
-dir.create("Results")
-dirs <- list.dirs(path=basedir, full.names=TRUE, recursive=FALSE) # List the directories
 
 # Writing the column names and writing it to a csv file
 colnames<-c("subjectid","Left_BA1_FoldInd","Right_BA1_FoldInd","Left_BA2_FoldInd","Right_BA2_FoldInd","Left_BA3a_FoldInd","Right_BA3a_FoldInd","Left_BA3b_FoldInd","Right_BA3b_FoldInd","Left_BA4a_FoldInd","Right_BA4a_FoldInd","Left_BA4p_FoldInd","Right_BA4p_FoldInd","Left_BA6_FoldInd","Right_BA6_FoldInd","Left_BA44_FoldInd","Right_BA44_FoldInd","Left_BA45_FoldInd","Right_BA45_FoldInd","Left_V1_FoldInd","Right_V1_FoldInd","Left_V2_FoldInd","Right_V2_FoldInd","Left_MT_FoldInd","Right_MT_FoldInd","Left_perirhinal_FoldInd","Right_perirhinal_FoldInd")
@@ -15,19 +11,11 @@ colnames<-t(colnames)
 write.table(colnames,"Results/BA_FoldInd.csv",append=TRUE,quote=FALSE,sep=",",row.names=FALSE,col.names=FALSE)
 
 ### Reading in the template for matching and filling up the missing values in the data 
-setwd(temp_dir)
 local_files <- list.files(temp_dir)
 base_file <- local_files[grepl("lh.BA.stats$",local_files)]
 table_base<- read.table(base_file)
 
 ### Again directing to the base directory
-setwd(basedir)
-length_dirs<- length(dirs)-1
-
-# Getting inside the individual directories
-for (i in 1:length_dirs){
-    
-  setwd(dirs[i])
   allfiles<-list.files(,recursive=TRUE)
   lhBA<-allfiles[grepl("lh.BA.stats$",allfiles)] # Reading the lh-BA file
   rhBA<-allfiles[grepl("rh.BA.stats$",allfiles)] # Reading the rh-BA file
@@ -77,8 +65,5 @@ for (i in 1:length_dirs){
     sub_id<-data.frame(subjectid)
     
     z<-cbind(sub_id,ext) # Combining the values and the subjectid, putting in one data frame
-    
-    setwd(basedir)
+
     write.table(z,"Results/BA_FoldInd.csv",append=TRUE,quote=FALSE,sep=",",row.names=FALSE,col.names=FALSE)
-}
-setwd(basedir)
