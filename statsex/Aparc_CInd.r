@@ -15,7 +15,7 @@ write.table(colnames,"Results/Aparc_CurvInd.csv",append=TRUE,quote=FALSE,sep=","
 ### Reading in the template for matching and filling up the missing values in the data 
 local_files <- list.files(temp_dir)
 base_file <- local_files[grepl("lh.aparc.stats$",local_files)]
-table_base<-read.table(base_file)
+table_base<-read.table(paste(temp_dir,base_file,sep="/"))
 
 allfiles<-list.files(,recursive=TRUE)
 lhaparc<-allfiles[grepl("lh.aparc.stats$",allfiles)] # Reading the lh-aparc file
@@ -45,7 +45,6 @@ table_rh <- merge(x=table_base,y=table_rh, all.x = TRUE ) # Doing for RH
 table_rh <- table_rh[match(table_base[,1],table_rh[,1]),]
 table_rh <- as.matrix(table_rh)
 table_rh[is.na(table_lh)] <- 0
-
 # Converting back to data frame
 table_lh <- as.data.frame(table_lh)
 table_rh <- as.data.frame(table_rh)
