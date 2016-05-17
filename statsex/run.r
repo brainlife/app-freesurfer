@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/bin/env Rscript
 
 args <- commandArgs(trailingOnly = TRUE)
 base_dir <- args[1]
