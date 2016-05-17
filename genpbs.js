@@ -29,8 +29,8 @@ function genzip(file, subject) {
 
 function genstatsex(file, subject) {
     var servicedir = process.env.SCA_SERVICE_DIR;
-    var workdir = process.env.SCA_WORKFLOW_DIR;
-    var line = servicedir+"/statsex/run.r \""+workdir+"/"+subject+"\" \""+servicedir+"/statsex_template\"\n";
+    var taskdir = process.env.SCA_TASK_DIR;
+    var line = servicedir+"/statsex/run.r \""+taskdir+"/"+subject+"\" \""+servicedir+"/statsex_template\"\n";
     return line;
 }
 
