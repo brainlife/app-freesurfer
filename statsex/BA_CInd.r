@@ -11,7 +11,7 @@ write.table(colnames,"Results/BA_CurvInd.csv",append=TRUE,quote=FALSE,sep=",",ro
 ### Reading in the template for matching and filling up the missing values in the data 
 local_files <- list.files(temp_dir)
 base_file <- local_files[grepl("lh.BA.stats$",local_files)]
-table_base<- read.table(base_file)
+table_base<-read.table(paste(temp_dir,base_file,sep="/"))
 
 allfiles<-list.files(,recursive=TRUE)
 lhBA<-allfiles[grepl("lh.BA.stats$",allfiles)] # Reading the lh-BA file

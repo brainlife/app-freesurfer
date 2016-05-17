@@ -13,7 +13,7 @@ write.table(colnames,"Results/Aseg_IntMax.csv",append=TRUE,quote=FALSE,sep=",",r
 ### Reading in the template for matching and filling up the missing values in the data 
 local_files <- list.files(temp_dir)
 base_file <- local_files[grepl("aseg.stats$",local_files)]
-table_base<-read.table(base_file)
+table_base<-read.table(paste(temp_dir,base_file,sep="/"))
 
 allfiles<-list.files(,recursive=TRUE)
 asegfile<-allfiles[grepl("aseg.stats$",allfiles)] # Reading the aseg file

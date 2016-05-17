@@ -14,8 +14,7 @@ write.table(colnames,"Results/Aparc_FoldInd.csv",append=TRUE,quote=FALSE,sep=","
 ### Reading in the template for matching and filling up the missing values in the data 
 local_files <- list.files(temp_dir)
 base_file <- local_files[grepl("lh.aparc.stats$",local_files)]
-table_base<-read.table(base_file)
-
+table_base<-read.table(paste(temp_dir,base_file,sep="/"))
 
 allfiles<-list.files(,recursive=TRUE)
 lhaparc<-allfiles[grepl("lh.aparc.stats$",allfiles)] # Reading the lh-aparc file
