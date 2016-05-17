@@ -4,6 +4,9 @@ args <- commandArgs(trailingOnly = TRUE)
 base_dir <- args[1]
 temp_dir <- args[2]
 
+#make sure results directory exists
+dir.create(paste(base_dir, "Results", sep="/"))
+
 wd <- getwd()
 setwd(base_dir)
 
