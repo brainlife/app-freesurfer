@@ -27,7 +27,7 @@ files<-c(
     "BA_GCurv.r",
     "BA_GVol.r",
     "BA_MCurv.r",
-    "BA_NumVert.R",
+#    "BA_NumVert.R",
     "BA_SArea.r",
     "BA_ThxAvg.r",
     "BA_ThxStd.r",
