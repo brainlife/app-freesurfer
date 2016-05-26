@@ -7,7 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start.sh",
+    "stop": "stop.sh",
+    "status": "status.sh"
   },
   "repository": {
     "type": "git",
@@ -18,13 +21,5 @@
   "bugs": {
     "url": "https://github.com/soichih/sca-service-freesurfer/issues"
   },
-  "homepage": "https://github.com/soichih/sca-service-freesurfer#readme",
-  "sca": {
-    "label": "Freesurfer",
-    "bin": {
-        "start": "start.sh",
-        "stop": "stop.sh",
-        "status": "status.sh"
-    }
-  }
+  "homepage": "https://github.com/soichih/sca-service-freesurfer#readme"
 }
