@@ -12,7 +12,7 @@ cd __taskdir__
 
 module unload freesurfer
 module load freesurfer/5.3.0
-module load r
+#module load r
 
 source /N/soft/cle4/freesurfer/5.3.0/FreeSurferEnv.sh
 export SUBJECTS_DIR=__taskdir__
@@ -23,7 +23,7 @@ __reconall__
 wait
 
 #run stats extraction
-__statsex__
+#__statsex__
 
 #remove _dis if I want to zip output directories
 #__zip_dis__
