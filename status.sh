@@ -18,8 +18,10 @@ fi
 
 #used to analyze the progress
 #TODO instead of using _upload, use config/input_task_id
-input_task_id=`$SCA_SERVICE_DIR/jq -r '.input_task_id' config.json`
-input_size=`du -sL ../$input_task_id | cut -f1`
+#input_task_id=`$SCA_SERVICE_DIR/jq -r '.input_task_id' config.json`
+#input_size=`du -sL ../$input_task_id | cut -f1`
+t1=`$SCA_SERVICE_DIR/jq -r '.t1' config.json`
+input_size=`ls -l $t1 | cut -f5 -d" "`
 
 if [ -f jobid ]; then
     jobid=`cat jobid`
