@@ -14,7 +14,8 @@ function genrecon(filename, subject) {
     line += "rm -r "+subject+"\n";
 
     var workdir = process.env.SCA_WORKFLOW_DIR;
-    line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all";
+    //line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all";
+    line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -autorecon1 -autorecon2 -openmp 4";
     if(config.hipposubfields) line+=" -hippo-subfields";
     line += " &\n";
     return line;
