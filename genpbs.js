@@ -11,7 +11,7 @@ var products = [];
 function genrecon(filename, subject) {
     var line = "";
     //recon-all fails if there is previous output dir (according to Jonn?)
-    line += "rm -r "+subject+"\n";
+    line += "rm -rf "+subject+"\n";
 
     var workdir = process.env.SCA_WORKFLOW_DIR;
     //line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all";
