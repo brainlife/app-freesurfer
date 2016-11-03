@@ -1,4 +1,5 @@
 {
     "hipposubfields": true,
-    "t1": "/N/u/hayashis/Karst/testdata/sca-service-freesurfer/t1.nii.gz"
+    "t1": "/N/u/hayashis/Karst/testdata/sca-service-freesurfer/t1.nii.gz",
+    "t1.take.too.long": "/N/dc2/scratch/hayashis/sca/s7-workflows/57912b0fef01633d720918cf/581112e1508d1a4bc7363c68/data/t1.nii.gz"
 }

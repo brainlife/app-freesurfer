@@ -1,2 +1,12 @@
-rm sca-service-freesurfer.e*
-rm sca-service-freesurfer.o*
+rm sca-freesurfer.e*
+rm sca-freesurfer.o*
+rm submit.pbs.*
+rm submit.pbs
+rm finished
+rm products.json
+rm jobid
+
+rm -rf t1
+
+rm *.pial
+rm *.vtk
