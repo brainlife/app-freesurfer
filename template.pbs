@@ -22,47 +22,24 @@ __reconall__
 #TODO - wait normally returns the exit status of the last job which terminated... I need to check for all process output
 wait
 
+#TODO - I should get this from 
+#outdir=t1_acpc_aligned
+
 #generate brain vtk model
-if [ -f "t1/surf/lh.pial" ]; then
-    mris_decimate -d 0.1 t1/surf/lh.pial lh.10.pial
+if [ -f "output/surf/lh.pial" ]; then
+    mris_decimate -d 0.1 output/surf/lh.pial lh.10.pial
     mris_convert lh.10.pial lh.10.vtk
 fi
 
-#if [ -f "t1/surf/lh.area.pial" ]; then
-#    mris_decimate -d 0.1 t1/surf/lh.area.pial lh.area.10.pial
-#    mris_convert lh.area.10.pial lh.area.10.vtk
-#fi
-
-#if [ -f "t1/surf/lh.curv.pial" ]; then
-#    mris_decimate -d 0.1 t1/surf/lh.curv.pial lh.curv.10.pial
-#    mris_convert lh.curv.10.pial lh.curv.10.vtk
-#fi
-
-if [ -f "t1/surf/rh.pial" ]; then
-    mris_decimate -d 0.1 t1/surf/rh.pial rh.10.pial
+if [ -f "output/surf/rh.pial" ]; then
+    mris_decimate -d 0.1 output/surf/rh.pial rh.10.pial
     mris_convert rh.10.pial rh.10.vtk
 fi
 
-#if [ -f "t1/surf/rh.area.pial" ]; then
-#    mris_decimate -d 0.1 t1/surf/rh.area.pial rh.area.10.pial
-#    mris_convert rh.area.10.pial rh.area.10.vtk
-#fi
-
-#if [ -f "t1/surf/rh.curv.pial" ]; then
-#    mris_decimate -d 0.1 t1/surf/rh.curv.pial rh.curv.10.pial
-#    mris_convert rh.curv.10.pial rh.curv.10.vtk
-#fi
-
 #generate brain vtk model
-if [ -f "t1/surf/lh.pial" ]; then
-    mris_decimate -d 0.1 t1/surf/lh.pial lh.10.pial
+if [ -f "output/surf/lh.pial" ]; then
+    mris_decimate -d 0.1 output/surf/lh.pial lh.10.pial
 fi
-
-#run stats extraction
-#__statsex__
-
-#remove _dis if I want to zip output directories
-#__zip_dis__
 
 #fake products.json for now..
 echo '__products__' > products.json
