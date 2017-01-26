@@ -3,6 +3,12 @@
 #return code 1 = finished successfully
 #return code 2 = failed
 
+#allows test execution
+if [ -z $SCA_WORKFLOW_DIR ]; then export SCA_WORKFLOW_DIR=`pwd`; fi
+if [ -z $SCA_TASK_DIR ]; then export SCA_TASK_DIR=`pwd`; fi
+if [ -z $SCA_SERVICE_DIR ]; then export SCA_SERVICE_DIR=`pwd`; fi
+if [ -z $SCA_PROGRESS_URL ]; then export SCA_PROGRESS_URL="https://soichi7.ppa.iu.edu/api/progress/status/_sca.test"; fi
+
 if [ -f finished ]; then
     code=`cat finished`
     if [ $code -eq 0 ]; then
