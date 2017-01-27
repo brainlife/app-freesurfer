@@ -1,30 +1,17 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=16:dc2,walltime=4:00:00
 #PBS -N sca-freesurfer
 #PBS -V
-
-##PBS -M hayashis@iu.edu
-##PBS -m abe
-##PBS -k o
-##PBS -j oe
+__pbs__
 
 cd __taskdir__
 
 module unload freesurfer
-module load freesurfer/5.3.0
-#module load r
+module load freesurfer/6.0.0
+source $FREESURFER_HOME/FreeSurferEnv.sh #karst
 
-#source /N/soft/cle4/freesurfer/5.3.0/FreeSurferEnv.sh #br2
-source /N/soft/rhel6/freesurfer/5.3.0/FreeSurferEnv.sh #karst
 export SUBJECTS_DIR=__taskdir__
 
 __reconall__
-
-#TODO - wait normally returns the exit status of the last job which terminated... I need to check for all process output
-wait
-
-#TODO - I should get this from 
-#outdir=t1_acpc_aligned
 
 #generate brain vtk model
 if [ -f "output/surf/lh.pial" ]; then
@@ -42,7 +29,5 @@ if [ -f "output/surf/lh.pial" ]; then
     mris_decimate -d 0.1 output/surf/lh.pial lh.10.pial
 fi
 
-#fake products.json for now..
-echo '__products__' > products.json
-
+echo '[]' > products.json
 echo 0 > finished

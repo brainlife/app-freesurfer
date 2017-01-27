@@ -14,13 +14,18 @@ then
         chmod +x $SCA_SERVICE_DIR/jq
 fi
 
-#mainly to debug locally
-if [ -z $SCA_WORKFLOW_DIR ]; then export SCA_WORKFLOW_DIR=`pwd`; fi
-if [ -z $SCA_TASK_DIR ]; then export SCA_TASK_DIR=`pwd`; fi
-if [ -z $SCA_SERVICE_DIR ]; then export SCA_SERVICE_DIR=`pwd`; fi
+#find out which environment we are in
+hostname | grep karst > /dev/null
+if [ $? -eq 0 ]; then
+    export PBS_ENV=karst
+fi
+echo $HOME | grep -i bigred > /dev/null
+if [ $? -eq 0 ]; then
+    export PBS_ENV=bigred2
+fi
 
-module load nodejs
 echo "Generating submit.pbs"
+module load nodejs
 node $SCA_SERVICE_DIR/genpbs.js > submit.pbs
 
 #clean up previous job (just in case)

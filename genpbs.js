@@ -1,43 +1,42 @@
 #!/bin/env node
 'use strict';
 
-var fs = require('fs');
-var config = JSON.parse(fs.readFileSync('config.json', "utf8"));
-var path = require('path');
+const fs = require('fs');
+const config = JSON.parse(fs.readFileSync('config.json', "utf8"));
+const path = require('path');
 
 var template = fs.readFileSync(__dirname+"/template.pbs", "utf8");
-var products = [];
 
 function genrecon(filename, subject) {
     var line = "";
+
     //recon-all fails if there is previous output dir (according to Jonn?)
     line += "rm -rf "+subject+"\n";
 
-    var workdir = process.env.SCA_WORKFLOW_DIR;
+    if(process.env.PBS_ENV == "bigred2") line += "module load ccm\nccmrun ";
     //line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -autorecon1 -autorecon2 -openmp 16";
-    line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all -openmp 16"; //all is needed to generate all labels
+    line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all -openmp 16\n"; //all is needed to generate all labels
     if(config.hipposubfields) line+=" -hippo-subfields";
-    line += " &\n";
     return line;
 }
 
 var reconall = "";
-var statsex = "";
 
-/*
-//guess a good subject name
-var filename = path.basename(config.t1);
-var filename_tokens = filename.split(".");
-filename_tokens.splice(filename_tokens.length-2, 2);
-var subject = filename_tokens.join(".");
-*/
+//setup environment specific pbs parameters
+var pbs = "";
+if(process.env.PBS_ENV == "karst") {
+    pbs += "#PBS -l nodes=1:ppn=16:dc2,walltime=12:00:00\n";
+} else if(process.env.PBS_ENV == "bigred2") {
+    pbs += "#PBS -l gres=ccm:nodes=1:ppn=32,walltime=10:00:00\n";
+}
 
 reconall += genrecon(config.t1, "output");
-products.push({type: "freesurfer", dir: "output"});
+//products.push({type: "freesurfer", dir: "output"});
 
 //do substitutions
 template = template.replace(/__taskdir__/g, process.env.SCA_TASK_DIR);
+template = template.replace("__pbs__", pbs);
 template = template.replace("__reconall__", reconall);
-template = template.replace("__products__", JSON.stringify(products));
 
 console.log(template);
+
