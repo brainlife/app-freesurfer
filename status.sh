@@ -44,12 +44,12 @@ if [ -f jobid ]; then
     fi
     if [ $jobstate == "R" ]; then
 
-        #get rough estimate of the progress by analyzing the size of input and output directory
-        taskdir_size=`du -s . | cut -f1`
-        per=`bc -l <<< $taskdir_size/$input_size/10` #output directory should roughly about 10 times the size of input
-        per=`printf %.4f $per` #round it
+        #get rough estimate of the progress by analyzing the size of output log
+        logsize=$(wc -l sca-freesurfer.o$jobid | cut -d' ' -f1)
+        per=$(echo "scale=2; $logsize/55" | bc) 
+
         #TODO - if $per is greater than 1.0, I should trim it at 0.99... 
-        echo "Running $per"
+        echo "$per% Completed"
         curl -s -X POST -H "Content-Type: application/json" -d "{\"status\": \"running\", \"progress\":$per, \"msg\":\"Executing recon_all\"}" $SCA_PROGRESS_URL > /dev/null
 
         exit 0 #running!

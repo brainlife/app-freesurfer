@@ -7,7 +7,7 @@ cd __taskdir__
 
 module unload freesurfer
 module load freesurfer/6.0.0
-source $FREESURFER_HOME/FreeSurferEnv.sh #karst
+source $FREESURFER_HOME/FreeSurferEnv.sh
 
 export SUBJECTS_DIR=__taskdir__
 

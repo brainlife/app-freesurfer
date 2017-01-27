@@ -10,3 +10,4 @@ rm -rf t1
 
 rm *.pial
 rm *.vtk
+rm -rf output
