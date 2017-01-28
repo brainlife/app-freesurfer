@@ -47,9 +47,10 @@ if [ -f jobid ]; then
         #get rough estimate of the progress by analyzing the size of output log
         logsize=$(wc -l sca-freesurfer.o$jobid | cut -d' ' -f1)
         per=$(echo "scale=2; $logsize/55" | bc) 
+        work=$(grep "#@#" sca-freesurfer.o$jobid | tail -1 | cut -c 5-)
 
         #TODO - if $per is greater than 1.0, I should trim it at 0.99... 
-        echo "$per% Completed"
+        echo "$per% Completed .. ($work)"
         curl -s -X POST -H "Content-Type: application/json" -d "{\"status\": \"running\", \"progress\":$per, \"msg\":\"Executing recon_all\"}" $SCA_PROGRESS_URL > /dev/null
 
         exit 0 #running!
