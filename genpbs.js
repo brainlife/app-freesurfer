@@ -10,7 +10,7 @@ var pbs = "";
 if(process.env.PBS_ENV == "karst") {
     pbs += "#PBS -l nodes=1:ppn=16,walltime=12:00:00\n";
 } else if(process.env.PBS_ENV == "bigred2") {
-    pbs += "#PBS -l nodes=1:ppn=32\n#PBS -q cpu\n#PBS -l walltime=10:00:00\n";
+    pbs += "#PBS -l nodes=1:ppn=32\n#PBS -q cpu\n#PBS -l walltime=14:00:00\n";
 }
 
 function genrecon(filename, subject) {
