@@ -45,8 +45,9 @@ if [ -f jobid ]; then
     if [ $jobstate == "R" ]; then
 
         #get rough estimate of the progress by analyzing the size of output log
+        #the algorithm relies on the expecation that final log size will be about 10500 lines
         logsize=$(wc -l sca-freesurfer.o$jobid | cut -d' ' -f1)
-        per=$(echo "scale=2; $logsize/55" | bc) 
+        per=$(echo "scale=2; $logsize/105" | bc) 
         work=$(grep "#@#" sca-freesurfer.o$jobid | tail -1 | cut -c 5-)
 
         #TODO - if $per is greater than 1.0, I should trim it at 0.99... 
