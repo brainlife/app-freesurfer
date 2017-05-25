@@ -34,7 +34,7 @@ var reconall = genrecon(config.t1, "output");
 
 //do substitutions
 var template = fs.readFileSync(__dirname+"/template.pbs", "utf8");
-template = template.replace(/__taskdir__/g, process.env.SCA_TASK_DIR);
+template = template.replace(/__taskdir__/g, process.env.TASK_DIR);
 template = template.replace("__pbs__", pbs);
 template = template.replace("__reconall__", reconall);
 

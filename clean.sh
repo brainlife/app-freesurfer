@@ -1,5 +1,7 @@
 rm sca-freesurfer.e*
 rm sca-freesurfer.o*
+rm app-freesurfer.e*
+rm app-freesurfer.o*
 rm submit.pbs.*
 rm submit.pbs
 rm finished

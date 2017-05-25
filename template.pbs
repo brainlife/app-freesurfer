@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -N sca-freesurfer
+#PBS -N app-freesurfer
 #PBS -V
 __pbs__
 
