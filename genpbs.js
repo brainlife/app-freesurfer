@@ -10,7 +10,7 @@ var pbs = "";
 if(process.env.HPC == "KARST") {
     pbs += "#PBS -l nodes=1:ppn=16,walltime=12:00:00\n";
 } else if(process.env.HPC == "CARBONATE") {
-    pbs += "#PBS -l nodes=1:ppn=24,walltime=6:00:00\n";
+    pbs += "#PBS -l nodes=1:ppn=24,walltime=9:00:00\n";
 } else if(process.env.HPC == "BIGRED2") {
     pbs += "#PBS -l nodes=1:ppn=32\n#PBS -q cpu\n#PBS -l walltime=20:00:00\n";//16 hours not enough
 }
@@ -26,7 +26,7 @@ function genrecon(filename, subject) {
     line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all"; //all is needed to generate all labels
     if(process.env.HPC == "BIGRED2") line += " -openmp 32";
     if(process.env.HPC = "KARST") line += " -openmp 16"; //not sure if this really does anything on karst
-    if(process.env.HPC == "CARBONATE") line += " -openmp 16"; 
+    if(process.env.HPC == "CARBONATE") line += " -openmp 24"; 
     if(config.hipposubfields) line+=" -hippo-subfields";
     return line;
 }
