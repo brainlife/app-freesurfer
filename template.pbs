@@ -4,9 +4,10 @@
 #PBS -V
 __pbs__
 
+[ "$PBS_O_WORKDIR" ] && cd $PBS_O_WORKDIR
+
 if [ $ENV == "IUHPC" ]; then
 
-	cd $PBS_O_WORKDIR
 	module unload freesurfer
 	module load freesurfer/6.0.0
 fi
@@ -15,6 +16,19 @@ source $FREESURFER_HOME/FreeSurferEnv.sh
 export SUBJECTS_DIR=`pwd`
 
 __reconall__
+ret=$?
+if [ ! $ret -eq 0 ]; then
+	echo $ret > finished
+	exit $ret
+fi
+
+if [ -d "output" ]; then
+	echo 0 > finished
+else
+	echo "output missing"
+	echo 1 > finished
+	exit 1
+fi
 
 #generate brain vtk model
 if [ -f "output/surf/lh.pial" ]; then
