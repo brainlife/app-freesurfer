@@ -1,15 +1,18 @@
 #!/bin/bash
 #PBS -N app-freesurfer
+#PBS -m abe
 #PBS -V
 __pbs__
 
-cd __taskdir__
+if [ $ENV == "IUHPC" ]; then
 
-module unload freesurfer
-module load freesurfer/6.0.0
+	cd $PBS_O_WORKDIR
+	module unload freesurfer
+	module load freesurfer/6.0.0
+fi
+
 source $FREESURFER_HOME/FreeSurferEnv.sh
-
-export SUBJECTS_DIR=__taskdir__
+export SUBJECTS_DIR=`pwd`
 
 __reconall__
 
