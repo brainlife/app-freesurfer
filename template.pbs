@@ -9,7 +9,8 @@ __pbs__
 if [ $ENV == "IUHPC" ]; then
 
 	module unload freesurfer
-	module load freesurfer/6.0.0
+	#module load freesurfer/6.0.0
+	module load freesurfer/5.3.0
 fi
 
 source $FREESURFER_HOME/FreeSurferEnv.sh
