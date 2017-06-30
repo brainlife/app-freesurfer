@@ -25,7 +25,7 @@ function genrecon(filename, subject) {
 
     line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all"; //all is needed to generate all labels
     if(process.env.HPC == "BIGRED2") line += " -openmp 32";
-    if(process.env.HPC = "KARST") line += " -openmp 16"; //not sure if this really does anything on karst
+    if(process.env.HPC == "KARST") line += " -openmp 16"; //not sure if this really does anything on karst
     if(process.env.HPC == "CARBONATE") line += " -openmp 24"; 
     if(config.hipposubfields) line+=" -hippo-subfields";
     return line;
