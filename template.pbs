@@ -7,7 +7,7 @@ __pbs__
 [ "$PBS_O_WORKDIR" ] && cd $PBS_O_WORKDIR
 
 if [ $ENV == "IUHPC" ]; then
-	module load freesurfer
+	module load freesurfer/5.3.0
 fi
 
 source $FREESURFER_HOME/FreeSurferEnv.sh
