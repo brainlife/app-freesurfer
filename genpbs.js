@@ -8,9 +8,9 @@ const path = require('path');
 //setup environment specific pbs parameters
 var pbs = "";
 if(process.env.HPC == "KARST") {
-    pbs += "#PBS -l nodes=1:ppn=16,walltime=12:00:00\n";
+    pbs += "#PBS -l nodes=1:ppn=16,walltime=15:00:00\n";
 } else if(process.env.HPC == "CARBONATE") {
-    pbs += "#PBS -l nodes=1:ppn=24,walltime=12:00:00\n";
+    pbs += "#PBS -l nodes=1:ppn=24,walltime=15:00:00\n";
 } else if(process.env.HPC == "BIGRED2") {
     pbs += "#PBS -l nodes=1:ppn=32\n#PBS -q cpu\n#PBS -l walltime=20:00:00\n";//16 hours not enough
 }
