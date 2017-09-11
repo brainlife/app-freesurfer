@@ -23,7 +23,7 @@ function genrecon(filename, subject) {
 
     if(process.env.HPC == "BIGRED2") line += "export OMP_NUM_THREADS=32\naprun -n 1 -d 32 ";
 
-    line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all"; //all is needed to generate all labels
+    line += "recon-all -i \""+filename+"\" -subject \""+subject+"\" -all -parallel"; //all is needed to generate all labels
     if(process.env.HPC == "BIGRED2") line += " -openmp 32";
     if(process.env.HPC == "KARST") line += " -openmp 16"; //not sure if this really does anything on karst
     if(process.env.HPC == "CARBONATE") line += " -openmp 24"; 
