@@ -8,6 +8,7 @@ if [ $ENV == "IUHPC" ]; then
 	module load nodejs
 fi
 node $SERVICE_DIR/genpbs.js > submit.pbs
+chmod +x submit.pbs
 
 #clean up previous job (just in case)
 rm -f finished
