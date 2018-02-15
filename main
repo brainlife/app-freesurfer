@@ -1,0 +1,8 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=8,vmem=64gb,walltime=24:00:00
+#PBS -N freesurfer
+#PBS -V
+
+rm -rf output #in case this is rerun
+
+time singularity exec -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && ./reconall.sh"
