@@ -3,7 +3,7 @@
 t1=`jq -r .t1 config.json`
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
-recon-all -i $t1 -subject output -all -parallel -openmp $OMP_NUM_THREADS
+recon-all -i $t1 -subject output -all -parallel -cw256 -openmp $OMP_NUM_THREADS
 ret=$?
 
 if [ ! $ret -eq 0 ];
