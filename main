@@ -5,6 +5,8 @@
 
 rm -rf output #in case this is rerun
 
-module load singularity 2> /dev/null
+#module load singularity 2> /dev/null
+
+[ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 
 time singularity exec -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && ./reconall.sh"
