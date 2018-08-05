@@ -7,4 +7,4 @@ rm -rf output #in case this is rerun
 
 module load singularity 2> /dev/null
 
-time singularity exec -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && ./reconall.sh"
+time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && ./reconall.sh"
