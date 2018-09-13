@@ -5,7 +5,7 @@
 
 This is a Brainlife wrapper for [Freesurfer](https://surfer.nmr.mgh.harvard.edu/); a popular brain segmentation tool developed by Athinoula A. Martinos Center for Biomedical Imaging at Massachusetts General Hospital. This wrapper executes `recon_all` to generate various data products used by other Brainlife Apps.
 
-![freeview](https://raw.githubusercontent.com/brain-life/brainlife.github.io/master/images/ui-logos/freeview.png)
+![freeview](https://medicine.uiowa.edu/mri/sites/medicine.uiowa.edu.mri/files/brain1.png)
 
 ### Authors
 - Franco Pestilli (franpest@indiana.edu)
