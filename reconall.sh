@@ -5,13 +5,26 @@ set -x
 
 t1=`jq -r .t1 config.json`
 t2=`jq -r .t2 config.json`
+hippocampal=`jq -r .hippocampal config.json`
+
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
 
 cmd="recon-all -i $t1 -subject output -all -parallel -openmp $OMP_NUM_THREADS"
 if [ -f $t2 ]; then
     cmd="$cmd -T2 $t2 -T2pial"
+
+    #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfields
+    #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfieldsAndNucleiOfAmygdala
+    if [ $hippocampal == "true" ]; then
+        cmd="$cmd -hippocampal-subfields-T1T2 $t2 t1t2"
+    fi
+else
+    if [ $hippocampal == "true" ]; then
+        cmd="$cmd -hippocampal-subfields-T1"
+    fi
 fi
+
 exec $cmd
 ret=$?
 

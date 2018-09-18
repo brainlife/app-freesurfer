@@ -9,4 +9,4 @@ rm -rf output #in case this is rerun
 
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 
-time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && ./reconall.sh"
+time singularity exec --writable -e docker://brainlife/freesurfer_on_mcr:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && ./reconall.sh"
