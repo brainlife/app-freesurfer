@@ -10,6 +10,7 @@ if [ -f $t2 ]; then
     cmd="$cmd -T2 $t2 -T2pial"
 fi
 exec $cmd
+recon-all -i $t1 -subject output -all -parallel -cw256 -openmp $OMP_NUM_THREADS
 ret=$?
 
 if [ ! $ret -eq 0 ];
