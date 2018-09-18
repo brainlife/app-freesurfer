@@ -1,9 +1,15 @@
 #!/bin/bash
 
 t1=`jq -r .t1 config.json`
+t2=`jq -r .t2 config.json`
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
-recon-all -i $t1 -subject output -all -parallel -openmp $OMP_NUM_THREADS
+
+cmd="recon-all -i $t1 -subject output -all -parallel -openmp $OMP_NUM_THREADS"
+if [ -f $t2 ]; then
+    cmd="$cmd -T2 $t2 -T2pial"
+fi
+exec $cmd
 ret=$?
 
 if [ ! $ret -eq 0 ];
@@ -13,6 +19,7 @@ then
 fi
 
 #TODO - I think this is only used by /eval UI.. should deprecate?
+#(warehouse can use freeview to visualize the entire freesurfer output)
 echo "generate brain vtk model (for visualization purpose)"
 mris_decimate -d 0.1 output/surf/lh.pial lh.10.pial
 mris_convert lh.10.pial lh.10.vtk
