@@ -11,8 +11,8 @@ export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
 
 #used fo hippocampal
-export LD_LIBRARY_PATH=/opt/mcr/v80/runtime/glnxa64:/opt/mcr/v80/bin/glnxa64:/opt/mcr/v80/sys/os/glnxa64
-export XAPPLRESDIR=/opt/mcr/v80/X11/app-defaults
+#export LD_LIBRARY_PATH=/opt/mcr/v80/runtime/glnxa64:/opt/mcr/v80/bin/glnxa64:/opt/mcr/v80/sys/os/glnxa64
+#export XAPPLRESDIR=/opt/mcr/v80/X11/app-defaults
 
 cmd="recon-all -i $t1 -subject output -all -parallel -openmp $OMP_NUM_THREADS"
 if [ -f $t2 ]; then
@@ -20,7 +20,6 @@ if [ -f $t2 ]; then
 
     #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfields
     #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfieldsAndNucleiOfAmygdala
-
     if [ $hippocampal == "true" ]; then
         cmd="$cmd -hippocampal-subfields-T1T2 $t2 t1t2"
     fi
