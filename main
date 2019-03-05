@@ -1,12 +1,21 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=8,vmem=16gb,walltime=48:00:00
-#PBS -N freesurfer
+#PBS -l nodes=1:ppn=8,vmem=15gb,walltime=48:00:00
+#PBS -N bl.freesurfer
 #PBS -V
+
+set -e
+set -x
 
 rm -rf output #in case this is rerun
 
-#module load singularity 2> /dev/null
-
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 echo $FREESURFER_LICENSE > license.txt
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer_on_mcr:6.0.0 ./reconall.sh
+#-hippocampal-subfields-T1t2 requires matlab binary to run on freeesurfer_on_mcr
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer_on_mcr:6.0.2 ./freesurfer.sh
+
+echo "converting aparc+aseg.mgz"
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer:6.0.0 mri_convert output/mri/aparc+aseg.mgz --out_orientation RAS aparc+aseg.nii.gz
+
+echo "generating surfaces/ vtk from aparc+aseg.nii.gz"
+time singularity exec -e docker://brainlife/docker-pythonvtk ./freesurfer2vtks.py 
+

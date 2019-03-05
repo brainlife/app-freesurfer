@@ -1,5 +1,5 @@
 {
-    "t1": "/mnt/scratch/testdata/100206/anat_5967bffa9b45c212bbec8957/100206_t1.nii.gz",
-    "t2": "/mnt/scratch/testdata/100206/anat_5967bffa9b45c212bbec8957/100206_t1.nii.gz",
+    "t1": "testdata/t1/t1.nii.gz",
+    "t2": "testdata/t2/t2.nii.gz",
     "hippocampal": true
 }
