@@ -32,6 +32,6 @@ fi
 recon-all $cmd
 
 #create aparc+aseg.nii.gz to create vtk surfaces later
-mri_convert output/mri/aparc+aseg.mgz --out_orientation RAS aparc+aseg.nii.gz
+#mri_convert output/mri/aparc+aseg.mgz --out_orientation RAS aparc+aseg.nii.gz
 
 

@@ -13,9 +13,9 @@ echo $FREESURFER_LICENSE > license.txt
 #-hippocampal-subfields-T1t2 requires matlab binary to run on freeesurfer_on_mcr
 time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer_on_mcr:6.0.2 ./freesurfer.sh
 
-echo "converting aparc+aseg.mgz"
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer:6.0.0 mri_convert output/mri/aparc+aseg.mgz --out_orientation RAS aparc+aseg.nii.gz
+#echo "converting aparc+aseg.mgz"
+#time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer:6.0.0 mri_convert output/mri/aparc+aseg.mgz --out_orientation RAS aparc+aseg.nii.gz
 
-echo "generating surfaces/ vtk from aparc+aseg.nii.gz"
-time singularity exec -e docker://brainlife/docker-pythonvtk ./freesurfer2vtks.py 
+#echo "generating surfaces/ vtk from aparc+aseg.nii.gz"
+#time singularity exec -e docker://brainlife/docker-pythonvtk ./freesurfer2vtks.py 
 
