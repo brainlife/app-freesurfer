@@ -17,5 +17,5 @@ time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt 
 #time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/freesurfer:6.0.0 mri_convert output/mri/aparc+aseg.mgz --out_orientation RAS aparc+aseg.nii.gz
 
 #echo "generating surfaces/ vtk from aparc+aseg.nii.gz"
-#time singularity exec -e docker://brainlife/docker-pythonvtk ./freesurfer2vtks.py 
+#time singularity exec -e docker://brainlife/pythonvtk:1.1 ./freesurfer2vtks.py 
 
