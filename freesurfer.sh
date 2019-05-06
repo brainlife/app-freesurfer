@@ -6,6 +6,7 @@ set -x
 t1=`jq -r .t1 config.json`
 t2=`jq -r .t2 config.json`
 hippocampal=`jq -r .hippocampal config.json`
+hires=`jq -r .hires config.json`
 
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
@@ -27,6 +28,10 @@ else
     if [ $hippocampal == "true" ]; then
         cmd="$cmd -hippocampal-subfields-T1"
     fi
+fi
+
+if [ $hires == "true" ]; then
+    cmd="$cmd -hires"
 fi
 
 recon-all $cmd
