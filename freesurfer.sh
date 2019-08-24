@@ -33,6 +33,7 @@ if [ $notalcheck == "true" ]; then
     cmd="$cmd -notal-check"
 fi
 
+rm -rf output
 recon-all $cmd
 
 #converting aparc to nifti

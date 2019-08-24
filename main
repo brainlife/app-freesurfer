@@ -5,8 +5,6 @@
 set -e
 set -x
 
-rm -rf output #in case this is rerun
-
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 echo $FREESURFER_LICENSE > license.txt
 
