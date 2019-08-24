@@ -35,6 +35,9 @@ fi
 
 rm -rf output
 recon-all $cmd
+#output output under freesurfer
+mkdir freesurfer
+mv output freesurfer
 
 #converting aparc to nifti
 mri_convert output/mri/aparc+aseg.mgz parc/parc.nii.gz
