@@ -33,7 +33,7 @@ if [ $notalcheck == "true" ]; then
     cmd="$cmd -notal-check"
 fi
 
-rm -rf output
+rm -rf output freesurfer
 recon-all $cmd
 
 #converting aparc to nifti
