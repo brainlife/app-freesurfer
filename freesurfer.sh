@@ -35,5 +35,7 @@ fi
 
 recon-all $cmd
 
-
+#converting aparc to nifti
+mri_convert output/mri/aparc+aseg.mgz parc/parc.nii.gz
+mri_convert output/mri/aparc.a2009s+aseg.mgz parc2009/parc.nii.gz
 
