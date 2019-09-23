@@ -3,5 +3,6 @@
     "t2": "testdata/t2/t2.nii.gz",
     "hippocampal": true,
     "notalcheck": true,
-    "hires": false
+    "hires": false,
+    "version": "6.0.0"
 }

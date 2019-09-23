@@ -9,7 +9,23 @@ set -x
 echo $FREESURFER_LICENSE > license.txt
 
 #-hippocampal-subfields-T1t2 requires matlab binary to run on freeesurfer_on_mcr
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt \
-	docker://brainlife/freesurfer_on_mcr:6.0.2 ./freesurfer.sh
+version=$(jq -r .version config.json)
+case $version in
+6.0.0)
+    container="brainlife/freesurfer_on_mcr:6.0.0"
+    ;;
+6.0.2)
+    container="brainlife/freesurfer_on_mcr:6.0.2"
+    ;;
+dev)
+    container="brainlife/freesurfer:dev"
+    ;;
+*)
+    echo "unknown version:$version.. using the latest brainlife/freesurfer"
+    container="brainlife/freesurfer"
+    ;;
+esac
+
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://$container ./freesurfer.sh
 
 
