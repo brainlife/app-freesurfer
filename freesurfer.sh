@@ -29,9 +29,16 @@ else
     fi
 fi
 
+rm -rf output freesurfer
 recon-all $cmd
 
 #create aparc+aseg.nii.gz to create vtk surfaces later
 #mri_convert output/mri/aparc+aseg.mgz --out_orientation RAS aparc+aseg.nii.gz
 
+#converting aparc to nifti
+mri_convert output/mri/aparc+aseg.mgz parc/parc.nii.gz
+mri_convert output/mri/aparc.a2009s+aseg.mgz parc2009/parc.nii.gz
 
+#put freesurfer output under freesurfer directory
+mkdir freesurfer
+mv output freesurfer
