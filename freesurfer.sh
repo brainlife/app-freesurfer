@@ -32,6 +32,9 @@ fi
 if [ $notalcheck == "true" ]; then
     cmd="$cmd -notal-check"
 fi
+if [ $cw256 == "true" ]; then
+    cmd="$cmd -cw256"
+fi
 
 rm -rf output freesurfer
 recon-all $cmd
