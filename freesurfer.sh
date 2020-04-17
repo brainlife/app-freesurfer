@@ -9,6 +9,7 @@ hippocampal=`jq -r .hippocampal config.json`
 hires=`jq -r .hires config.json`
 notalcheck=`jq -r .notalcheck config.json`
 cw256=`jq -r .cw256 config.json`
+debug=`jq -r .debug config.json`
 
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
@@ -35,6 +36,9 @@ if [ $notalcheck == "true" ]; then
 fi
 if [ $cw256 == "true" ]; then
     cmd="$cmd -cw256"
+fi
+if [ $debug == "true" ]; then
+    cmd="$cmd -debug"
 fi
 
 rm -rf output freesurfer
