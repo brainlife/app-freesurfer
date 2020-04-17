@@ -8,6 +8,7 @@ t2=`jq -r .t2 config.json`
 hippocampal=`jq -r .hippocampal config.json`
 hires=`jq -r .hires config.json`
 notalcheck=`jq -r .notalcheck config.json`
+cw256=`jq -r .cw256 config.json`
 
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
