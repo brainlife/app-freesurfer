@@ -10,6 +10,7 @@ hires=`jq -r .hires config.json`
 notalcheck=`jq -r .notalcheck config.json`
 cw256=`jq -r .cw256 config.json`
 debug=`jq -r .debug config.json`
+version=`jq -r .version config.json`
 
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
@@ -20,11 +21,25 @@ if [ -f $t2 ]; then
     #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfields
     #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfieldsAndNucleiOfAmygdala
     if [ $hippocampal == "true" ]; then
-        cmd="$cmd -hippocampal-subfields-T1T2 $t2 t1t2"
+        case $version in
+        6.0.0 | 6.0.1 | dev)
+            cmd="$cmd -hippocampal-subfields-T1T2 $t2 t1t2"
+            ;;
+        *)
+            echo "t2 hippocampal-subfields is no longer handled via recon-all"
+            ;;
+        esac
     fi
 else
     if [ $hippocampal == "true" ]; then
-        cmd="$cmd -hippocampal-subfields-T1"
+        case $version in
+        6.0.0 | 6.0.1 | dev)
+            cmd="$cmd -hippocampal-subfields-T1"
+            ;;
+        *)
+            echo "t1 hippocampal-subfields is no longer handled via recon-all"
+            ;;
+        esac
     fi
 fi
 
@@ -43,6 +58,29 @@ fi
 
 rm -rf output freesurfer
 recon-all $cmd
+
+if [ -f $t2 ]; then
+    if [ $hippocampal == "true" ]; then
+        case $version in
+        6.0.0 | 6.0.1 | dev)
+            echo "already processed hippocampal-subfields"
+            ;;
+        *)
+            segmentHA_T2.sh freesurfer
+            ;;
+        esac
+    fi
+else
+    if [ $hippocampal == "true" ]; then
+        case $version in
+        6.0.0 | 6.0.1 | dev)
+            echo "already processed hippocampal-subfields"
+            ;;
+        *)
+            segmentHA_T1.sh freesurfer
+        esac
+    fi
+fi
 
 #converting aparc to nifti
 mri_convert output/mri/aparc+aseg.mgz parc/parc.nii.gz
