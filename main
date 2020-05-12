@@ -20,6 +20,9 @@ case $version in
 7.0.0)
     container="brainlife/freesurfer:7.0.0"
     ;;
+7.1.0)
+    container="brainlife/freesurfer:7.1.0"
+    ;;
 dev)
     container="brainlife/freesurfer:dev"
     ;;
