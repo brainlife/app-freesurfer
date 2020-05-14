@@ -90,3 +90,13 @@ mri_convert output/mri/aparc.a2009s+aseg.mgz parc2009/parc.nii.gz
 mkdir freesurfer
 mv output freesurfer
 
+echo "writing out product.json"
+if [ $hippocampal == "true" ]; then
+    datatype_tags="[\"hippocampal\"]"
+else
+    datatype_tags="[]"
+fi
+meta="{\"freesurfer_version\": \"$version\"}"
+echo "{\"datatype_tags\": $datatype_tags, \"meta\": $meta}" > product.json
+
+
