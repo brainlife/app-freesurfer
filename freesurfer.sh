@@ -11,6 +11,7 @@ notalcheck=`jq -r .notalcheck config.json`
 cw256=`jq -r .cw256 config.json`
 debug=`jq -r .debug config.json`
 version=`jq -r .version config.json`
+jq -r '.expert | select(.!=null)' config.json > expert.opts
 
 export OMP_NUM_THREADS=8
 export SUBJECTS_DIR=`pwd`
@@ -54,6 +55,9 @@ if [ $cw256 == "true" ]; then
 fi
 if [ $debug == "true" ]; then
     cmd="$cmd -debug"
+fi
+if [ -s expert.opts ]; then
+    cmd="$cmd -expert expert.opts"
 fi
 
 rm -rf output freesurfer

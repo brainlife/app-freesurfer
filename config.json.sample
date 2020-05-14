@@ -3,5 +3,6 @@
     "hippocampal": true,
     "notalcheck": true,
     "hires": false,
-    "version": "7.1.0"
+    "version": "7.1.0",
+    "expert_dis": ""
 }
