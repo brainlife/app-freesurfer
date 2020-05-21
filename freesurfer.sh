@@ -86,6 +86,17 @@ else
     fi
 fi
 
+if [ $thalamicnuclei== "true" ]; then
+    case $version in
+    6.0.0 | 6.0.1)
+        echo "thalamicnuclei is only available for freesurfer >7"
+        exit 1
+        ;;
+    *)
+        segmentThalamicNuclei.sh output `pwd`
+    esac
+fi
+
 #converting aparc to nifti
 mri_convert output/mri/aparc+aseg.mgz parc/parc.nii.gz
 mri_convert output/mri/aparc.a2009s+aseg.mgz parc2009/parc.nii.gz
@@ -94,13 +105,19 @@ mri_convert output/mri/aparc.a2009s+aseg.mgz parc2009/parc.nii.gz
 mkdir freesurfer
 mv output freesurfer
 
+datatype_tags=()
 echo "writing out product.json"
 if [ $hippocampal == "true" ]; then
-    datatype_tags="[\"hippocampal\"]"
-else
-    datatype_tags="[]"
+    datatype_tags+=('"hippocampal"')
 fi
+if [ $thalamicnuclei == "true" ]; then
+    datatype_tags+=('"thalamic_nuclei"')
+fi
+
+function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
+datatype_tags_str=$(join_by , "${datatype_tags[@]}")
+
 meta="{\"freesurfer_version\": \"$version\"}"
-echo "{\"datatype_tags\": $datatype_tags, \"meta\": $meta}" > product.json
+echo "{\"datatype_tags\": [$datatype_tags_str], \"meta\": $meta}" > product.json
 
 
