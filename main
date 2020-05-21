@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=8,vmem=20gb,walltime=18:00:00
+#PBS -l nodes=1:ppn=12,vmem=29gb,walltime=18:00:00
 #PBS -N bl.freesurfer
 
 set -e
