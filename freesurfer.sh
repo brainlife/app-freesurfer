@@ -6,6 +6,7 @@ set -x
 t1=`jq -r .t1 config.json`
 t2=`jq -r .t2 config.json`
 hippocampal=`jq -r .hippocampal config.json`
+thalamicnuclei=`jq -r .thalamicnuclei config.json`
 hires=`jq -r .hires config.json`
 notalcheck=`jq -r .notalcheck config.json`
 cw256=`jq -r .cw256 config.json`
@@ -107,10 +108,10 @@ mv output freesurfer
 
 datatype_tags=()
 echo "writing out product.json"
-if [ $hippocampal == "true" ]; then
+if [ "$hippocampal" == "true" ]; then
     datatype_tags+=('"hippocampal"')
 fi
-if [ $thalamicnuclei == "true" ]; then
+if [ "$thalamicnuclei" == "true" ]; then
     datatype_tags+=('"thalamic_nuclei"')
 fi
 
