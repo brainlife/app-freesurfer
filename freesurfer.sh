@@ -87,7 +87,7 @@ else
     fi
 fi
 
-if [ $thalamicnuclei== "true" ]; then
+if [ $thalamicnuclei == "true" ]; then
     case $version in
     6.0.0 | 6.0.1)
         echo "thalamicnuclei is only available for freesurfer >7"
