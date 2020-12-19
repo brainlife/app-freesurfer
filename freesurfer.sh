@@ -71,7 +71,7 @@ if [ -f $t2 ]; then
             echo "already processed hippocampal-subfields"
             ;;
         *)
-            segmentHA_T2.sh output `pwd`
+            segmentHA_T2.sh output $t2 T2 1 `pwd`
             ;;
         esac
     fi
@@ -82,7 +82,7 @@ else
             echo "already processed hippocampal-subfields"
             ;;
         *)
-            segmentHA_T1.sh output `pwd`
+            segmentHA_T2.sh output $t2 T2 1 `pwd`
         esac
     fi
 fi
