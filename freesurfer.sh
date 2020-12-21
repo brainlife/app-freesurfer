@@ -11,7 +11,6 @@ hires=`jq -r .hires config.json`
 notalcheck=`jq -r .notalcheck config.json`
 cw256=`jq -r .cw256 config.json`
 debug=`jq -r .debug config.json`
-version=`jq -r .version config.json`
 jq -r '.expert | select(.!=null)' config.json > expert.opts
 
 export OMP_NUM_THREADS=8
@@ -20,29 +19,6 @@ export SUBJECTS_DIR=`pwd`
 cmd="-i $t1 -subject output -all -parallel -openmp $OMP_NUM_THREADS"
 if [ -f $t2 ]; then
     cmd="$cmd -T2 $t2 -T2pial"
-    #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfields
-    #https://surfer.nmr.mgh.harvard.edu/fswiki/HippocampalSubfieldsAndNucleiOfAmygdala
-    if [ $hippocampal == "true" ]; then
-        case $version in
-        6.0.0 | 6.0.1 | dev)
-            cmd="$cmd -hippocampal-subfields-T1T2 $t2 t1t2"
-            ;;
-        *)
-            echo "t2 hippocampal-subfields is no longer handled via recon-all"
-            ;;
-        esac
-    fi
-else
-    if [ $hippocampal == "true" ]; then
-        case $version in
-        6.0.0 | 6.0.1 | dev)
-            cmd="$cmd -hippocampal-subfields-T1"
-            ;;
-        *)
-            echo "t1 hippocampal-subfields is no longer handled via recon-all"
-            ;;
-        esac
-    fi
 fi
 
 if [ $hires == "true" ]; then
@@ -65,37 +41,17 @@ rm -rf output freesurfer
 recon-all $cmd
 
 if [ -f $t2 ]; then
-    if [ $hippocampal == "true" ]; then
-        case $version in
-        6.0.0 | 6.0.1 | dev)
-            echo "already processed hippocampal-subfields"
-            ;;
-        *)
-            segmentHA_T2.sh output $t2 T2 1 `pwd`
-            ;;
-        esac
-    fi
+  if [ $hippocampal == "true" ]; then
+    segmentHA_T2.sh output $t2 T2 1 `pwd`
+  fi
 else
-    if [ $hippocampal == "true" ]; then
-        case $version in
-        6.0.0 | 6.0.1 | dev)
-            echo "already processed hippocampal-subfields"
-            ;;
-        *)
-            segmentHA_T2.sh output $t2 T2 1 `pwd`
-        esac
-    fi
+  if [ $hippocampal == "true" ]; then
+    segmentHA_T2.sh output $t2 T2 1 `pwd`
+  fi
 fi
 
 if [ $thalamicnuclei == "true" ]; then
-    case $version in
-    6.0.0 | 6.0.1)
-        echo "thalamicnuclei is only available for freesurfer >7"
-        exit 1
-        ;;
-    *)
-        segmentThalamicNuclei.sh output `pwd`
-    esac
+  segmentThalamicNuclei.sh output `pwd`
 fi
 
 #converting aparc to nifti
@@ -119,7 +75,5 @@ fi
 function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
 datatype_tags_str=$(join_by , "${datatype_tags[@]}")
 
-meta="{\"freesurfer_version\": \"$version\"}"
-echo "{\"datatype_tags\": [$datatype_tags_str], \"meta\": $meta}" > product.json
-
+echo "{\"datatype_tags\": [$datatype_tags_str]}" > product.json
 
