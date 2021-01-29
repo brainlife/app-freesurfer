@@ -46,7 +46,7 @@ if [ -f $t2 ]; then
   fi
 else
   if [ $hippocampal == "true" ]; then
-    segmentHA_T2.sh output $t2 T2 1 `pwd`
+    segmentHA_T1.sh output `pwd`
   fi
 fi
 
