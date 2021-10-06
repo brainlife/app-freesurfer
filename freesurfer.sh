@@ -36,6 +36,9 @@ fi
 if [ -s expert.opts ]; then
     cmd="$cmd -expert expert.opts"
 fi
+if [ `jq -r .localGI config.json` == "true" ]; then
+    cmd="$cmd -localGI"
+fi
 
 rm -rf output freesurfer
 recon-all $cmd
