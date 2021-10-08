@@ -78,5 +78,21 @@ fi
 function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
 datatype_tags_str=$(join_by , "${datatype_tags[@]}")
 
-echo "{\"datatype_tags\": [$datatype_tags_str]}" > product.json
+echo "running qatools.sh to generate qa image"
+qatools.py --subjects_dir . --screenshots --subjects output --output_dir qa
+
+#the image is too big.. so let's resize it
+convert qa/screenshots/output/output.png -resize 50% -trim -quality 90 qa/screenshots/output/output.jpg
+
+cat << EOF > product.json
+{
+    "datatype_tags": [$datatype_tags_str],
+    "brainlife": [
+        {
+            "type": "image/jpg", 
+            "name": "qatools",
+            "base64": "$(base64 -w 0 qa/screenshots/output/output.jpg)"
+        }
+    ]  
+}
 
