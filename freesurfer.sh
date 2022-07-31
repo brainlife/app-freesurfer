@@ -91,22 +91,31 @@ fi
 function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
 datatype_tags_str=$(join_by , "${datatype_tags[@]}")
 
-echo "running qatools.sh to generate qa image"
 (
+echo "running qatools.sh to generate qa image"
 qatools.py --subjects_dir freesurfer --screenshots --subjects output --output_dir qa
 )
 
-#the image is too big.. so let's resize it
-convert qa/screenshots/output/output.png -resize 50% -trim -quality 90 qa/screenshots/output/output.jpg
+if [ -f qa/screenshots/output/output.jpg ];
+then
+        #the image is too big.. so let's resize it
+        convert qa/screenshots/output/output.png -resize 50% -trim -quality 90 qa/screenshots/output/output.jpg
+        qa="{
+            \"type\": \"image/jpg\",
+            \"name\": \"qatools\",
+            \"base64\": \"$(base64 -w 0 qa/screenshots/output/output.jpg)\"
+        }"
+else
+        qa="{ 
+                \"type\": \"error\",
+                \"msg\": \"Failed to generate qatools.py image.\"
+}"
+
+fi
 
 cat << EOF > product.json
 {
     "datatype_tags": [$datatype_tags_str],
-    "brainlife": [
-        {
-            "type": "image/jpg",
-            "name": "qatools",
-            "base64": "$(base64 -w 0 qa/screenshots/output/output.jpg)"
-        }
-    ]
+    "brainlife": [$qa]
 }
+EOF
