@@ -91,10 +91,12 @@ fi
 function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
 datatype_tags_str=$(join_by , "${datatype_tags[@]}")
 
-(
-echo "running qatools.sh to generate qa image"
-qatools.py --subjects_dir freesurfer --screenshots --subjects output --output_dir qa
-)
+if [ $cw256 != "true" ]; then
+    (
+    echo "running qatools.sh to generate qa image"
+    qatools.py --subjects_dir freesurfer --screenshots --subjects output --output_dir qa
+    )
+fi    
 
 if [ -f qa/screenshots/output/output.png ];
 then
