@@ -94,9 +94,10 @@ datatype_tags_str=$(join_by , "${datatype_tags[@]}")
 (
 echo "running qatools.sh to generate qa image"
 qatools.py --subjects_dir freesurfer --screenshots --subjects output --output_dir qa
-)
+) || echo "failed to run qatools"
+   
 
-if [ -f qa/screenshots/output/output.jpg ];
+if [ -f qa/screenshots/output/output.png ];
 then
         #the image is too big.. so let's resize it
         convert qa/screenshots/output/output.png -resize 50% -trim -quality 90 qa/screenshots/output/output.jpg
