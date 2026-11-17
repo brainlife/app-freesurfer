@@ -45,6 +45,31 @@ You can submit this App online at [https://doi.org/10.25663/bl.app.0](https://do
 ./main
 ```
 
+### App 1.7 development image
+
+For `"version": "dev"`, this branch pins `brainlife/freesurfer:dev-20200131-time1`
+by its immutable digest in `main`. It preserves the original
+`freesurfer-local-build-dev-20200131` build and adds GNU `time`, which FreeSurfer's
+`fs_time` wrapper requires at `/usr/bin/time` during surface remeshing. The 6.0.0
+and 6.0.1 image selections are unchanged.
+
+`Dockerfile.dev-time` records the original base image digest and installs only the
+checksum-verified CentOS GNU `time` package. To rebuild and test on Linux x86-64:
+
+```bash
+docker build --platform linux/amd64 -f Dockerfile.dev-time -t freesurfer-1.7-time .
+docker run --rm --platform linux/amd64 --network none --read-only --tmpfs /tmp \
+  --mount type=bind,src="$PWD/tests",dst=/test,readonly \
+  --mount type=bind,src=/absolute/path/to/license.txt,dst=/run/fs-license,readonly \
+  --env FS_LICENSE=/run/fs-license --entrypoint /bin/bash \
+  freesurfer-1.7-time /test/time-smoke.sh
+```
+
+The smoke test uses the image's bundled `fsaverage3` surface, checks exit-status
+propagation through GNU `time`, and runs remeshing through `fs_time`. Supply a
+valid FreeSurfer license at runtime; do not include it in the image. This is a
+dependency smoke test, not a full `recon-all` run.
+
 ### Sample Datasets
 
 If you don't have your own input file, you can download sample datasets from Brainlife.io, or you can use [Brainlife CLI](https://github.com/brain-life/cli).

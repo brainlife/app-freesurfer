@@ -18,7 +18,7 @@ case $version in
     container="brainlife/freesurfer:6.0.1"
     ;;
 dev)
-    container="brainlife/freesurfer:dev"
+    container="brainlife/freesurfer@sha256:d955deb98444743b11fba2920cc9855edc96d1722cba9fe8e6c29c1d5bd4fcfc"
     ;;
 *)
     echo "unknown version:$version.. using the latest brainlife/freesurfer"
