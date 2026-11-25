@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this App, please cite it as below, together with the software it uses (see the README)."
+type: software
+title: "Freesurfer 7.3.2"
+doi: "10.25663/brainlife.app.664"
+authors:
+  - name: "brainlife.io"
+repository-code: "https://github.com/brainlife/app-freesurfer"
+license: MIT
+url: "https://doi.org/10.25663/brainlife.app.664"
+references:
+  - type: article
+    title: "brainlife.io: a decentralized and open-source cloud platform to support neuroscience research"
+    doi: "10.1038/s41592-024-02237-2"
+    journal: "Nature Methods"
+    year: 2024
+    authors:
+      - family-names: "Hayashi"
+        given-names: "Soichi"
+      - name: "and others"
