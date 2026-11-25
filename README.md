@@ -8,7 +8,7 @@ This is a Brainlife wrapper for [Freesurfer](https://surfer.nmr.mgh.harvard.edu/
 ![pipeline](http://www.opensourceimaging.org/wp-content/uploads/open-source-imaging-project-upload-freesurfer-pipeline2.jpg)
 
 ### Authors
-- Franco Pestilli (franpest@indiana.edu)
+- Franco Pestilli ([@francopestilli](https://github.com/francopestilli))
 - Lindsey Kitchell (kitchell@indiana.edu)
 
 ### Contributors
