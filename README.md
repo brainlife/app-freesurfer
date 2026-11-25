@@ -8,7 +8,7 @@ This is a Brainlife wrapper for [Freesurfer](https://surfer.nmr.mgh.harvard.edu/
 ![freeview](https://medicine.uiowa.edu/mri/sites/medicine.uiowa.edu.mri/files/brain1.png)
 
 ### Authors
-- Franco Pestilli (franpest@indiana.edu)
+- Franco Pestilli ([@francopestilli](https://github.com/francopestilli))
 - Lindsey Kitchell (kitchell@indiana.edu)
 
 ### Contributors
