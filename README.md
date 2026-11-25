@@ -14,7 +14,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -24,21 +24,21 @@ Wraps FreeSurfer's recon-all -all (one or more T1w images). Use it as the first 
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/anat/t1w` · `neuro/anat/t2w` (optional) |
-| 📤 **Outputs** | `neuro/freesurfer` · `neuro/parcellation/volume` ×3 |
-| 🐳 **Container** | `brainlife/freesurfer:7.3.2` |
-| ⚙️ **Resources** | 8 CPUs · 25 GB memory · 18 h walltime |
-| 🔑 **Requires** | `FREESURFER_LICENSE` |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.664](https://doi.org/10.25663/brainlife.app.664) |
+| **Inputs** | `neuro/anat/t1w` · `neuro/anat/t2w` (optional) |
+| **Outputs** | `neuro/freesurfer` · `neuro/parcellation/volume` ×3 |
+| **Container** | `brainlife/freesurfer:7.3.2` |
+| **Resources** | 8 CPUs · 25 GB memory · 18 h walltime |
+| **Requires** | `FREESURFER_LICENSE` |
+| **Run it** | [doi.org/10.25663/brainlife.app.664](https://doi.org/10.25663/brainlife.app.664) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `t1` | `neuro/anat/t1w` | yes | t1 to input |
 | `t2` | `neuro/anat/t2w` | no | Using T2 to improve pial surfaces |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -48,7 +48,7 @@ Wraps FreeSurfer's recon-all -all (one or more T1w images). Use it as the first 
 | `parcDKT` | `neuro/parcellation/volume` | DKT (aparc.DKTatlas+aseg) volumetric parcellation in NIfTI. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (8)</summary>
+<summary><b>Parameters</b> (8)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -65,7 +65,7 @@ Wraps FreeSurfer's recon-all -all (one or more T1w images). Use it as the first 
 
 <!-- brainlife-app:end -->
 
-## 🏷️ Versions on brainlife.io
+## Versions on brainlife.io
 
 Each version is a separate App on brainlife.io, built from its own branch of this repository.
 
@@ -75,13 +75,13 @@ Each version is a separate App on brainlife.io, built from its own branch of thi
 | Freesurfer 7.1.1 | 7.1.1 | [`7.1.1-1`](https://github.com/brainlife/app-freesurfer/tree/7.1.1-1) | [doi:10.25663/brainlife.app.462](https://doi.org/10.25663/brainlife.app.462) | available |
 | Freesurfer | 6.0–7.1 (selectable) | [`1.12`](https://github.com/brainlife/app-freesurfer/tree/1.12) | [doi:10.25663/bl.app.0](https://doi.org/10.25663/bl.app.0) | deprecated |
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/brainlife.app.664](https://doi.org/10.25663/brainlife.app.664), choose a T1-weighted dataset (and optionally a T2-weighted one) from your project, set the options and press **Execute**. The outputs are archived to your project and can feed any App that takes a `neuro/freesurfer` or `neuro/parcellation/volume` input.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/), [`jq`](https://jqlang.github.io/jq/) and a [FreeSurfer license](https://surfer.nmr.mgh.harvard.edu/registration.html).
 
@@ -105,7 +105,7 @@ You need [Singularity/Apptainer](https://apptainer.org/), [`jq`](https://jqlang.
    ./main
    ```
 
-### 🧪 Sample data
+### Sample data
 
 Download a T1-weighted sample from brainlife.io with the [brainlife CLI](https://github.com/brainlife/cli):
 
@@ -115,7 +115,7 @@ bl login
 bl dataset download 5a050966eec2b300611abff2 && mv 5a050966eec2b300611abff2 input/t1
 ```
 
-## 📦 Outputs
+## Outputs
 
 `output/` is a standard FreeSurfer subject directory:
 
@@ -130,12 +130,12 @@ output/
 
 The App also writes the Desikan-Killiany (`parc`), Destrieux (`parc2009`) and DKT (`parcDKT`) volumetric parcellations as separate datasets.
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`ERROR: Talairach failed`**: set `notalcheck` to skip the Talairach check, and make sure the image is roughly aligned to the anatomical axes (the ACPC alignment Apps on brainlife.io can do this).
 - **Submillimetre or HCP 7T data**: set `hires`, and `cw256` if the field of view is larger than 256 mm. Expect a much longer run.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -145,14 +145,14 @@ The App also writes the Desikan-Killiany (`parc`), Destrieux (`parc2009`) and DK
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 - Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
 
-## 👥 Authors
+## Authors
 
 - Franco Pestilli (project director)
 - Lindsey Kitchell
 
 **Contributors:** Soichi Hayashi, Brent McPherson
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -171,6 +171,6 @@ The App also writes the Desikan-Killiany (`parc`), Destrieux (`parc2009`) and DK
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](LICENSE). FreeSurfer itself is distributed under its own [license](https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferSoftwareLicense).
