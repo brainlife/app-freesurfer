@@ -18,27 +18,16 @@
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
-> **Runs FreeSurfer 7.3.2 recon-all on a T1-weighted image (optionally with a T2w for the pial surface) to produce cortical surfaces, a volumetric segmentation and the Desikan-Killiany, Destrieux and DKT parcellations.**
+**Runs FreeSurfer 7.3.2 recon-all on a T1-weighted image (optionally with a T2w for the pial surface) to produce cortical surfaces, a volumetric segmentation and the Desikan-Killiany, Destrieux and DKT parcellations.**
 
 Wraps FreeSurfer's recon-all -all (one or more T1w images). Use it as the first step for any analysis that needs cortical surfaces, cortical thickness or an anatomical parcellation (for example as ROIs for tractography or network analysis). An optional T2-weighted image refines the pial surface; optional steps run hippocampal subfield (segmentHA_T1/T2) and thalamic nuclei segmentation and local gyrification index. Expect many hours of compute per subject; the input should be a whole-head T1w image roughly aligned to the anatomical axes.
 
-| | |
-|---|---|
-| 📥 **Inputs** | `neuro/anat/t1w` · `neuro/anat/t2w` (optional) |
-| 📤 **Outputs** | `neuro/freesurfer` · `neuro/parcellation/volume` ×3 |
-| 🐳 **Container** | `brainlife/freesurfer:7.3.2` |
-| ⚙️ **Resources** | 8 CPUs · 25 GB memory · 18 h walltime |
-| 🔑 **Requires** | `FREESURFER_LICENSE` |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.664](https://doi.org/10.25663/brainlife.app.664) |
-
-#### 📥 Inputs
+Run it on brainlife.io: [https://doi.org/10.25663/brainlife.app.664](https://doi.org/10.25663/brainlife.app.664)
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `t1` | `neuro/anat/t1w` | yes | t1 to input |
 | `t2` | `neuro/anat/t2w` | no | Using T2 to improve pial surfaces |
-
-#### 📤 Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -46,9 +35,6 @@ Wraps FreeSurfer's recon-all -all (one or more T1w images). Use it as the first 
 | `parc` | `neuro/parcellation/volume` | Desikan-Killiany (aparc+aseg) volumetric parcellation in NIfTI. |
 | `parc2009` | `neuro/parcellation/volume` | Destrieux (aparc.a2009s+aseg) volumetric parcellation in NIfTI. |
 | `parcDKT` | `neuro/parcellation/volume` | DKT (aparc.DKTatlas+aseg) volumetric parcellation in NIfTI. |
-
-<details>
-<summary><b>⚙️ Parameters</b> (8)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -59,9 +45,9 @@ Wraps FreeSurfer's recon-all -all (one or more T1w images). Use it as the first 
 | `expert` | string |  | You can specify extra command line options for various freesurfer commands executed by recon-all. Please leave it blank unless necessary. https://surfer.nmr.mgh.harvard.edu/fswiki/recon-all#ExpertOptionsFile |
 | `hippocampal` | boolean | `false` | Generate an automated segmentation of the hippocampal subfields based on a statistical atlas built primarily upon ultra-high resolution (~0.1 mm isotropic) ex vivo MRI data. This new method can take advantage high-resolution, dedicated images when available (typically, but not necessarily, T2 weighted), and solves a number of limitations of the in vivo atlas that was distributed with FreeSurfer 5.1-5.3, namely |
 | `thalamicnuclei` | boolean | `false` | (For freesurfer >7) Generate a parcellation of the thalamus into 25 different nuclei, using a probabilistic atlas built with histological data. The parcellation is based on structural MRI, either the main T1 scan processed through recon-all, or an additional scan of a different modality, which potentially shows better contrast between the nuclei. [http://freesurfer.net/fswiki/ThalamicNuclei] |
-| `localGI` | boolean | `false` | local Gyrification Index (lGI) This will produce files named lh.pial_lgi and rh.pial_lgi in the subjects surf directory. These files can be loaded as overlays in tksurfer. See https://surfer.nmr.mgh.harvard.edu/fswiki/LGI |
+| ` localGI` | boolean | `false` | local Gyrification Index (lGI) This will produce files named lh.pial_lgi and rh.pial_lgi in the subjects surf directory. These files can be loaded as overlays in tksurfer. See https://surfer.nmr.mgh.harvard.edu/fswiki/LGI |
 
-</details>
+Runtime: container `brainlife/freesurfer:7.3.2`; 8 CPUs; 25 GB memory; 18 h walltime; needs `FREESURFER_LICENSE`.
 
 <!-- brainlife-app:end -->
 
