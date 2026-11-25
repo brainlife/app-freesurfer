@@ -8,7 +8,7 @@ This is a Brainlife wrapper for [Freesurfer](https://surfer.nmr.mgh.harvard.edu/
 ![freeview](https://medicine.uiowa.edu/mri/sites/medicine.uiowa.edu.mri/files/brain1.png)
 
 ### Authors
-- Franco Pestilli (franpest@indiana.edu)
+- Franco Pestilli ([@francopestilli](https://github.com/francopestilli))
 - Lindsey Kitchell (kitchell@indiana.edu)
 
 ### Contributors
@@ -16,7 +16,7 @@ This is a Brainlife wrapper for [Freesurfer](https://surfer.nmr.mgh.harvard.edu/
 - Brent McPherson (bcmcpher@iu.edu)
 
 ### Project director
-- Franco Pestilli (franpest@indiana.edu)
+- Franco Pestilli ([@francopestilli](https://github.com/francopestilli))
 
 ### Funding 
 [![NSF-BCS-1734853](https://img.shields.io/badge/NSF_BCS-1734853-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1734853)
